@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="main">
+  <div class="plan-input">
+    <form method="post" action="{% url 'plan-create' %}">
+      {% csrf_token %}
+      <input type="text" style='' name="title" placeholder="Введите название плана..." required>
+      <br><br>
+      <textarea name="content" placeholder="Опишите план" rows="6" style="width:100%; min-height:400px"></textarea>
+      <br><br>
+      <button type="submit" class="plan-btn">Создать план</button>
+    </form>
+  </div>
+</main>
+{% endblock content %}

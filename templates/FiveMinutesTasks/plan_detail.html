@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="main">
+  <div class="title-bg">
+    <h1 class="title">{{ plan.title }}</h1>
+  </div>
+
+  <section class="content">
+    {{ plan.content|linebreaks }}
+  </section>
+
+  <div class="plans-header">
+    <small>Автор: <a href="{% url 'user-profile' plan.owner.username %}">{{ plan.owner }}</a></small>
+  </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="main">
+  <div class="title-bg">
+    <h1 class="title" id="typewriter"></h1>
+  </div>
+  <p class="subtitle">
+    Наша нейросеть позволит вам составить план действий для достижения ваших целей,
+    например выучить английский
+  </p>
+
+  <!-- Описание сайта -->
+  <section class="site-description">
+    <p>
+      Добро пожаловать в <strong>Ваши нейро планы</strong> — инновационную платфому, где искусственный интеллект становится вашим личным стратегом.
+    </p>
+    <p>
+      Присоединяйтесь и начните планировать прямо сейчас.
+    </p>
+    <button class="butt"><a href="{% url "about" %}" class="text">О проекте</a></button>
+  </section>
+  <!-- Подписки -->
+  <section class="pricing" id="b">
+    <h2 class="pricing-title">Выберите подписку</h2>
+    <div class="plans-container">
+      <!-- контент карточек подписок (статичный макет) -->
+      <div class="plan free">
+        <h3 class="plan-title">FREE</h3>
+        <p class="plan-description">Базовый доступ к нейросети для создания простых планов.</p>
+        <p class="plan-price">0 руб/мес</p>
+        <button class="plan-btn">Выбрать FREE</button>
+      </div>
+      <div class="plan plus">
+        <h3 class="plan-title">PLUS</h3>
+        <p class="plan-description">Расширенные возможности для активных пользователей.</p>
+        <p class="plan-price">499 руб/мес</p>
+        <button class="plan-btn">Выбрать PLUS</button>
+      </div>
+      <div class="plan pro">
+        <h3 class="plan-title">PRO</h3>
+        <p class="plan-description">Профессиональный уровень — все возможности и приоритетная поддержка.</p>
+        <p class="plan-price">999 руб/мес</p>
+        <button class="plan-btn">Выбрать PRO</button>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock content %}

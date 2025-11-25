@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Создать новый план</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-left">
+      <button class="home-btn"><a href="index.html" class="text">На главную</a></button>
+    </div>
+    <div class="nav-right">
+      <button><a href="#" class="text">Планы пользователей</a></button>
+      <button><a href="index.html#a" class="text">О нас</a></button>
+      <button><a href="index.html#b" class="text">Цены на подписки</a></button>
+      <button class="create-btn">
+        <span class="icon-placeholder"></span>
+        <a href="#" class="text">Создать новый план</a>
+      </button>
+      <div class="profile">
+        <img src="https://via.placeholder.com/40" alt="Профиль" id="profile-pic" />
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="plan-input">
+      <input type="text" placeholder="Что хотите запланировать?..">
+    </div>
+  </main>
+
+  <script>
+    // ---- Клик по профилю ----
+    document.getElementById('profile-pic').addEventListener('click', () => {
+      alert('Профиль в разработке 👤');
+    });
+  </script>
+</body>
+</html>

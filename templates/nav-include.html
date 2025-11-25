@@ -1,0 +1,37 @@
+  {% load static %}
+  <header class="navbar">
+    <div class="nav-left">
+      <button><a href="{% url "home" %}" class="text">На главную</a></button>
+    </div>
+    <div class="nav-right">
+      {% comment %} <button><a href="#" class="text">Планы пользователей</a></button> {% endcomment %}
+      <button><a href="{% url "about" %}" class="text">О проекте</a></button>
+      <button><a href="{% url "home" %}#b" class="text">Цены на подписки</a></button>
+      <button>
+        <span class="icon-placeholder"><img src='{% static "img/plus.svg" %}' class="plus"/></span>
+        <a href="{% url "plan-create" %}" class="text">Создать новый план</a>
+      </button>
+      <!-- logout button placed inside nav-right to keep layout stable -->
+      {% if user.is_authenticated %}
+      <form action="{% url 'users:logout' %}" method="post" style="margin-left:8px;">
+        {% csrf_token %}
+        <button type="submit" class="logout-btn">Выйти {{ user.username }}</button>
+      </form>
+      {% endif %}
+      <div class="profile">
+        {% if user.is_authenticated %}
+          <a href="{% url 'user-profile' user.username %}">
+            {% if user.profile.avatar %}
+              <img src="{{ user.profile.avatar.url }}" alt="Аватар пользователя {{ user.username }}" id="profile-pic" />
+            {% else %}
+              <img src="{% static 'img/avatar-placeholder.svg' %}" alt="Аватар" id="profile-pic" />
+            {% endif %}
+          </a>
+        {% else %}
+          <a href="{% url 'users:login' %}">
+            <img src="{% static 'img/avatar-placeholder.svg' %}" alt="Аватар" id="profile-pic" />
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </header>

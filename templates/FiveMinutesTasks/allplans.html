@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<main class="main">
+  <div class="plans-header">
+    <h1 class="title-bg">Все планы</h1></div>
+
+  <div class="plans-grid">
+    {% comment %} Здесь будут рендериться карточки планов {% endcomment %}
+    {% for plan in plans %}
+      {% if plan.slug %}
+        <a class="plan-card" href="{% url 'plan-detail' plan.slug %}">
+          <h4>{{ plan.title }}</h4>
+          <p>{{ plan.date_add }}</p>
+        </a>
+      {% else %}
+        <div class="plan-card">
+          <h4>{{ plan.title }}</h4>
+          <p>{{ plan.date_add }}</p>
+        </div>
+      {% endif %}
+    {% empty %}
+      <p>Планов пока нет.</p>
+    {% endfor %}
+  </div>
+
+  <div class="pagination">
+    {% if page_obj.has_previous %}
+      <button><a href="?page={{ page_obj.previous_page_number }}" class="text">←</a></button>
+    {% endif %}
+    {% for p in paginator.page_range %}
+      <button{% if p == page_obj.number %} class="active"{% endif %}>{{ p }}</button>
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <button><a href="?page={{ page_obj.next_page_number }} " class="text">→</a></button>
+    {% endif %}
+  </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<main class="main">
+  <div class="profile-section">
+      <!-- Редактируемый аватар только для владельца -->
+  
+  
+      <label for="avatar-upload" class="profile-avatar">
+        {% if profile_user.profile.avatar %}
+          <img id="avatar-preview" src="{{ profile_user.profile.avatar.url }}" alt="Аватар пользователя {{ profile_user.username }}" class="profile-avatar-img">
+        {% else %}
+          <img id="avatar-preview" src="{% static 'img/avatar-placeholder.svg' %}" alt="Аватар" class="profile-avatar-img">
+        {% endif %}
+      </label>
+      <!-- Скрытый input для загрузки файла -->
+      <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+  
+  
+    <div class="profile-bio">
+      <h2>{{ profile_user.profile.display_name|default:profile_user.username }}</h2>
+      {% if profile_user.date_joined %}
+      <p>Зарегистрирован: {{ profile_user.date_joined|date:"d.m.Y" }}</p>
+      {% endif %}
+      <p>{{ profile_user.email }}</p>
+    </div>
+    
+      <div class="profile-description">
+        <h3>Описание:</h3>
+    {% if profile_user == request.user %}
+      <!-- Редактируемое описание -->
+      <p id="bio-text" class="editable-bio" style="cursor: pointer; position: relative;">
+        {{ profile_user.profile.bio|default:"Добавьте описание" }}
+      </p>
+      <textarea id="bio-edit" style="display: none; width: 100%; height: 100px;"></textarea>
+      <button id="bio-save" style="display: none;">Сохранить</button>
+    {% else %}
+      <!-- Не редактируемое -->
+      <p>{{ profile_user.profile.bio|default:"Нет описания" }}</p>
+    {% endif %}
+      </div>
+  
+  </div>
+
+  <div class="plans-header"><a href="{% url 'user-plans' profile_user.username %}" style="text-decoration: none; color: #CCCCCC;">Все ваши планы →</a></div>
+  <div class="plans-grid">
+    {% for plan in plans %}
+      {% if plan.slug %}
+        <a href="{% url 'plan-detail' plan.slug %}" class="plan-card">
+          <h4>{{ plan.title }}</h4>
+          <p>{{ plan.date_add}}</p>
+        </a>
+      {% else %}
+        <div class="plan-card">
+          <h4>{{ plan.title }}</h4>
+          <p>{{ plan.date_add}}</p>
+        </div>
+      {% endif %}
+    {% empty %}
+      <p>У пользователя ещё нет планов.</p>
+    {% endfor %}
+  </div>
+</main>
+
+<script>
+  {% if profile_user == request.user %}
+  document.getElementById('avatar-upload').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+      // Предпросмотр
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('avatar-preview').src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+
+      // AJAX-запрос на сервер
+      const formData = new FormData();
+      formData.append('avatar', file);
+      formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+      fetch("{% url 'users:update-avatar' %}", {
+        method: 'POST',
+        body: formData,
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          console.log('Аватар обновлен:', data.avatar_url);
+          document.getElementById('avatar-preview').src = data.avatar_url + '?' + new Date().getTime();
+        } else {
+          alert('Ошибка: ' + (data.errors ? JSON.stringify(data.errors) : data.error));
+        }
+      })
+      .catch(error => {
+        console.error('Ошибка:', error);
+        alert('Произошла ошибка при загрузке.');
+      });
+    }
+  });
+  const bioText = document.getElementById('bio-text');
+  const bioEdit = document.getElementById('bio-edit');
+  const bioSave = document.getElementById('bio-save');
+
+  bioText.addEventListener('click', function() {
+    bioEdit.value = bioText.innerText.trim();  // Заполняем textarea текущим текстом
+    bioText.style.display = 'none';
+    bioEdit.style.display = 'block';
+    bioSave.style.display = 'block';
+    bioEdit.focus();
+  });
+
+  bioSave.addEventListener('click', function() {
+    const newBio = bioEdit.value;
+
+    // AJAX-запрос
+    const formData = new FormData();
+    formData.append('bio', newBio);
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+    fetch("{% url 'users:update-bio' %}", {
+      method: 'POST',
+      body: formData,
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        bioText.innerText = data.bio || 'Добавьте описание';
+        bioText.style.display = 'block';
+        bioEdit.style.display = 'none';
+        bioSave.style.display = 'none';
+      } else {
+        alert('Ошибка: ' + (data.errors ? JSON.stringify(data.errors) : data.error));
+      }
+    })
+    .catch(error => {
+      console.error('Ошибка:', error);
+      alert('Произошла ошибка при сохранении.');
+    });
+  });  
+  {% else %}
+  window.location.href = '{% url "user-profile" request.user.username %}';  
+{% endif %}
+
+</script>
+
+{% endblock content %}

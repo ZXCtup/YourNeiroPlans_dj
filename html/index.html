@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ваши нейро планы</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-left">
+      <button class="home-btn">На главную</button>
+    </div>
+    <div class="nav-right">
+      <button><a href="#" class="text">Планы пользователей</a></button>
+      <button><a href="#a" class="text">О нас</a></button>
+      <button><a herf="#b" class="text">Цены на подписки</a></button>
+      <button class="create-btn">
+        <span class="icon-placeholder"></span>
+        <a href="#" class="text">Создать новый план</a>
+      </button>
+      <div class="profile">
+        <img src="https://via.placeholder.com/40" alt="Профиль" id="profile-pic" />
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="title-bg">
+      <h1 class="title" id="typewriter"></h1>
+    </div>
+    <p class="subtitle">
+      Наша нейросеть позволит вам составить план действий для достижения ваших целей,
+      например выучить английский
+    </p>
+    <a name="a"\></a>
+    <!-- Описание сайта -->
+    <section class="site-description">
+      <p>
+        Добро пожаловать в <strong>Ваши нейро планы</strong> — инновационную платформу будущего, где искусственный интеллект становится вашим личным стратегом, наставником и вдохновителем на пути к любым целям. 
+        Мы верим, что каждый человек способен на великие свершения, и наша миссия — помочь вам раскрыть этот потенциал с помощью передовых технологий.
+      </p>
+      <p>
+        Представьте: вы просто формулируете свою мечту — будь то изучение иностранного языка, запуск собственного бизнеса, подготовка к марафону или создание шедевра в цифровом искусстве — 
+        и наша нейросеть мгновенно генерирует для вас <em>персонализированный, пошаговый, умный и гибкий план</em>, который учитывает ваш ритм жизни, уровень подготовки, доступное время и даже настроение.
+      </p>
+      <p>
+        Никаких шаблонов. Никаких устаревших методик. Только наука, данные, психология и искусственный интеллект, работающие в синергии, чтобы вы не просто шли к цели — 
+        а двигались к ней <strong>самым эффективным, приятным и устойчивым способом</strong>.
+      </p>
+      <p>
+        Мы не просто планируем — мы <strong>прогнозируем</strong>. Наша система анализирует тысячи успешных кейсов, адаптирует стратегии под ваш уникальный профиль и корректирует план в реальном времени. 
+        Забыли сделать шаг? Нейросеть напомнит. Устали? Предложит перераспределить нагрузку. Достигли промежуточной цели раньше срока? Поздравит и ускорит прогресс.
+      </p>
+      <p>
+        <strong>Ваши нейро планы</strong> — это не приложение. Это ваш цифровой союзник, который всегда на вашей стороне. 
+        Будь вы студентом, предпринимателем, спортсменом, художником или просто человеком, который хочет жить осознанно — мы здесь, чтобы превратить «хочу» в «уже сделал».
+      </p>
+      <p>
+        Присоединяйтесь к тысячам пользователей, которые уже изменили свою жизнь с помощью нейро-планирования. 
+        Начните прямо сейчас — и через год вы не узнаете себя. А мы будем рядом на каждом шагу.
+      </p>
+    </section>
+
+    <!-- Подписки -->
+    <section class="pricing">
+      <h2 class="pricing-title">Выберите подписку</h2>
+      <div class="plans-container">
+        <div class="plan free">
+          <h3 class="plan-title">FREE</h3>
+          <p class="plan-description">Базовый доступ к нейросети для создания простых планов. Идеально для новичков, желающих попробовать сервис без обязательств.</p>
+          <ul class="plan-features">
+            <li>До 5 планов в месяц</li>
+            <li>Основные шаблоны</li>
+            <li>Общий чат-поддержка</li>
+            <li>Автоотчистка раз в 60 дней</li>
+          </ul>
+          <p class="plan-price">0 руб/мес</p>
+          <button class="plan-btn">Выбрать FREE</button>
+        </div>
+        <div class="plan plus">
+          <h3 class="plan-title">PLUS</h3>
+          <p class="plan-description">Расширенные возможности для активных пользователей. Получите больше гибкости и инструментов для достижения целей.</p>
+          <ul class="plan-features">
+            <li>До 40 планов</li>
+            <li>Приоритетная поддержка</li>
+            <li>Интеграция с календарем</li>
+            <li>Отсутствие автоотчистки</li>
+          </ul>
+          <p class="plan-price">499 руб/мес</p>
+          <button class="plan-btn">Выбрать PLUS</button>
+        </div>
+        <div class="plan pro">
+          <h3 class="plan-title">PRO</h3>
+          <p class="plan-description">Профессиональный уровень для серьёзных амбиций. Полный доступ ко всем функциям, включая продвинутый ИИ и эксклюзивные инструменты.</p>
+          <ul class="plan-features">
+            <li>Все возможности PLUS</li>
+            <li>Безлимитное планирование</li>
+            <li>Кастомные нейро-модели</li>
+            <li>VIP-поддержка</li>
+            
+          </ul>
+          <p class="plan-price">999 руб/мес</p>
+          <button class="plan-btn">Выбрать PRO</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="content">
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In egestas luctus orci vel sollicitudin. 
+        Sed facilisis eros sit amet erat porttitor consequat. Cras facilisis sollicitudin sagittis...
+      </p>
+      <p>
+        Vivamus in volutpat tellus, eu dapibus ipsum. Nullam elementum eleifend elit laoreet maximus...
+      </p>
+      <p>
+        Morbi imperdiet ligula non leo condimentum faucibus. Ut malesuada erat venenatis...
+      </p>
+    </section> -->
+  </main>
+<a name="b"\></a>
+  <footer class="footer">
+    <p>© 2025 Ваши нейро планы — Все права защищены</p>
+  </footer>
+
+  <script>
+    // ---- Клик по профилю ----
+    document.getElementById('profile-pic').addEventListener('click', () => {
+      alert('Профиль в разработке');
+    });
+
+    // ---- Эффект печатания текста ----
+    const element = document.getElementById('typewriter');
+    const texts = [
+      'Ваши нейро планы',
+      'Планируйте всё, что хотите',
+      'Достигайте целей с помощью нейросети'
+    ];
+
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    const typedSpan = document.createElement('span');
+    typedSpan.className = 'typed';
+    const cursorSpan = document.createElement('span');
+    cursorSpan.className = 'cursor';
+    cursorSpan.textContent = '|';
+
+    element.appendChild(typedSpan);
+    element.appendChild(cursorSpan);
+
+    function updateText() {
+      const current = texts[textIndex];
+      typedSpan.textContent = current.substring(0, charIndex);
+    }
+
+    function type() {
+      updateText();
+
+      if (!isDeleting && charIndex < texts[textIndex].length) {
+        charIndex++;
+        setTimeout(type, 100);
+      } else if (isDeleting && charIndex > 0) {
+        charIndex--;
+        setTimeout(type, 50);
+      } else if (!isDeleting && charIndex === texts[textIndex].length) {
+        isDeleting = true;
+        setTimeout(type, 1500);
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        textIndex = (textIndex + 1) % texts.length;
+        setTimeout(type, 500);
+      }
+    }
+
+    type();
+  </script>
+</body>
+</html>
